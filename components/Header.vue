@@ -68,6 +68,10 @@
             padding: 4rem var(--mobile-x-padding);
             border-bottom: 1px solid rgba(151, 151, 151, 0.1);
             height: 3.5rem;
+            width: calc(100vw - 8rem);
+            position: fixed;
+            top: 0;
+            z-index: 10;
             .header-mobile {
                 display: flex;
                 flex-direction: row;

@@ -17,13 +17,18 @@
         --color-white: #FAFAFA;
 
         --mobile-x-padding: 4rem;
+        --desktop-x-padding: 15rem;
         --transition: 0.3s ease;
+        --border-radius: 10px;
     }
     h1, h2, h3, h4, h5, h6, .overline, .subtitle {
         text-transform: uppercase;
     }
     h1, h2, h3, h4, h5, h6, .subtitle {
         font-weight: bold;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+        margin: 0;
     }
     h1 {
         font-size: 56px;
@@ -92,16 +97,20 @@
             }
         }
         &.button-secondary {
-            background-color: white;
-            color: black;
+            background-color: black;
+            color: white;
+            border: none;
+        }
+        &.button-tertiary {
+            background: none;
             border: 1px solid black;
-            &:hover {
-                background-color: black;
-                color: white;
-            }
+            color: black;
         }
     }
     @media screen and (min-width: 0px) {
+        h1 {
+            font-size: 36px;
+        }
         .hidden-mobile {
             display: block;
         }

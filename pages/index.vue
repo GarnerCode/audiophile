@@ -1,5 +1,9 @@
 <template>
-  <Landing></Landing>
+  <div>
+    <Landing></Landing>
+    <Categories></Categories>
+    <ProductFeaturePrimary></ProductFeaturePrimary>
+  </div>
 </template>
 
 <script lang="ts">
