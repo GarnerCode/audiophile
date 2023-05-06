@@ -4,6 +4,7 @@
         <main>
             <Nuxt />
         </main>
+        <Footer></Footer>
     </div>
 </template>
 
@@ -75,6 +76,9 @@
         font-size: 15px;
         line-height: 25px;
         font-weight: 500;
+    }
+    .text-highlight {
+        color: var(--color-primary);
     }
     .button {
         width: 160px;

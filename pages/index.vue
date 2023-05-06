@@ -7,6 +7,7 @@
       <ProductFeatureSecondary></ProductFeatureSecondary>
       <ProductFeatureTertiary></ProductFeatureTertiary>
     </section>
+    <About></About>
   </div>
 </template>
 
