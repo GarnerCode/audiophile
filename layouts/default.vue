@@ -23,7 +23,7 @@
         --border-radius: 10px;
     }
     body {
-        background-color: var(--color-white);
+        background-color: var(--color-gray);
         margin: 0;
         font-family: 'Manrope', sans-serif;
     }

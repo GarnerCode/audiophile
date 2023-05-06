@@ -30,7 +30,6 @@
         },
         created() {
             this.queryCategory = this.$route.params.category;
-            console.log('category: ', this.queryCategory);
         },
         methods: {
             filteredProductsByCategory(): Product[] {
