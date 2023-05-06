@@ -125,5 +125,8 @@
         .hidden-tablet {
             display: block;
         }
+        h1 {
+            font-size: 56px;
+        }
     }
 </style>

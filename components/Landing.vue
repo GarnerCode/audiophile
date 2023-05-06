@@ -119,7 +119,7 @@
                 }
             }
             .section-text {
-                max-width: 35rem;
+                max-width: 40rem;
             }
         }
     }
