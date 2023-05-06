@@ -100,11 +100,18 @@
             background-color: black;
             color: white;
             border: none;
+            &:hover {
+                background-color: #4C4C4C;
+            }
         }
         &.button-tertiary {
             background: none;
             border: 1px solid black;
             color: black;
+            &:hover {
+                background-color: black;
+                color: white;
+            }
         }
     }
     @media screen and (min-width: 0px) {

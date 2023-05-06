@@ -2,9 +2,11 @@
   <div>
     <Landing></Landing>
     <Categories></Categories>
-    <div class="product-features">
+    <section class="section-product-features">
       <ProductFeaturePrimary></ProductFeaturePrimary>
-    </div>
+      <ProductFeatureSecondary></ProductFeatureSecondary>
+      <ProductFeatureTertiary></ProductFeatureTertiary>
+    </section>
   </div>
 </template>
 
@@ -18,10 +20,11 @@ export default Vue.extend({
 
 <style lang="scss">
   @media screen and (min-width: 0px) {
-    .product-features {
+    .section-product-features {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 5rem;
+      margin: 20rem 0;
     }
   }
 </style>

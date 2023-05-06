@@ -1,11 +1,11 @@
 <template>
-    <div class="product-feature-secondary">
+    <div class="product-feature-tertiary">
         <div class="feature-content">
-            <img class="feature-img img-mobile" src="assets/images/mobile/secondary-feature-mobile.jpg" alt="ZX7 Speaker">
-            <img class="feature-img img-tablet" src="assets/images/tablet/secondary-feature-tablet.jpg" alt="ZX7 Speaker">
-            <img class="feature-img img-desktop" src="assets/images/desktop/secondary-feature-desktop.jpg" alt="ZX7 Speaker">
+            <img class="feature-img img-mobile" src="assets/images/mobile/tertiary-feature-mobile.jpg" alt="YX1 Earphones">
+            <img class="feature-img img-tablet" src="assets/images/tablet/tertiary-feature-tablet.jpg" alt="YX1 Earphones">
+            <img class="feature-img img-desktop" src="assets/images/desktop/tertiary-feature-desktop.jpg" alt="YX1 Earphones">
             <div class="feature-text">
-                <h4>ZX7 Speaker</h4>
+                <h4>YX1 Earphones</h4>
                 <button class="button button-tertiary">See Product</button>
             </div>
         </div>
@@ -14,12 +14,10 @@
 
 <style lang="scss">
     @media screen and (min-width: 0px) {
-        .product-feature-secondary {
+        .product-feature-tertiary {
             margin: 0 var(--mobile-x-padding);
-            border-radius: var(--border-radius);
-            position: relative;
             .img-tablet {
-                display: none;
+                display: none
             }
             .img-desktop {
                 display: none;
@@ -29,36 +27,39 @@
                 border-radius: var(--border-radius);
             }
             .feature-text {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                margin: auto 0;
-                padding-left: 3rem;
+                padding: 7rem 3rem;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
                 gap: 3rem;
             }
         }
     }
     @media screen and (min-width: 768px) {
-        .product-feature-secondary {
+        .product-feature-tertiary {
+            .feature-content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
             .img-mobile {
-                display: none;
+                display: none
             }
             .img-tablet {
                 display: block;
             }
             .feature-text {
-                padding-left: 10rem;
+                justify-content: center;
             }
         }
     }
     @media screen and (min-width: 1440px) {
-        .product-feature-secondary {
+        .product-feature-tertiary {
             margin: 0 var(--desktop-x-padding);
+            .feature-content {
+                gap: 8rem;
+            }
             .img-tablet {
-                display: none;
+                display: none
             }
             .img-desktop {
                 display: block;
