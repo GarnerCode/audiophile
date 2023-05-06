@@ -23,7 +23,9 @@
                     <div class="line3"></div>
                 </div>
                 <div class="header-logo">
-                    <img src="~/static/assets/images/audiophile-logo.svg" alt="Audiophile Logo">
+                    <NuxtLink to="/">
+                        <img src="~/static/assets/images/audiophile-logo.svg" alt="Audiophile Logo">
+                    </NuxtLink>
                 </div>
             </div>
             <div class="header-right">
@@ -32,7 +34,9 @@
         </div>
         <div class="header-desktop">
             <div class="header-logo">
-                <img src="~/static/assets/images/audiophile-logo.svg" alt="Audiophile Logo">
+                <NuxtLink to="/">
+                    <img src="~/static/assets/images/audiophile-logo.svg" alt="Audiophile Logo">
+                </NuxtLink>
             </div>
             <nav>
                 <ul>
