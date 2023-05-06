@@ -22,6 +22,11 @@
         --transition: 0.3s ease;
         --border-radius: 10px;
     }
+    body {
+        background-color: var(--color-white);
+        margin: 0;
+        font-family: 'Manrope', sans-serif;
+    }
     h1, h2, h3, h4, h5, h6, .overline, .subtitle {
         text-transform: uppercase;
     }
@@ -36,7 +41,7 @@
         letter-spacing: 2px;
     }
     h2 {
-        font-size: 40px;
+        font-size: 28px;
         letter-spacing: 1.5px;
     }
     h3 {
@@ -92,6 +97,7 @@
         transition: var(--transition);
         cursor: pointer;
         font-weight: bold;
+        text-decoration: none;
         &.button-primary {
             background-color: var(--color-primary);
             color: white;
@@ -138,6 +144,9 @@
         }
         h1 {
             font-size: 56px;
+        }
+        h2 {
+            font-size: 40px;
         }
     }
 </style>

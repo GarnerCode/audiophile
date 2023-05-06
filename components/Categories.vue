@@ -1,15 +1,15 @@
 <template>
     <div class="categories-container">
-        <div v-for="(category, index) of categoriesData" :key="index" class="category">
+        <NuxtLink :to="`/products/${category.label}`" v-for="(category, index) of categoriesData" :key="index" class="category">
             <img class="category-img category-img-mobile" :src="category.images.mobile" :alt="category.label">
             <img class="category-img category-img-tablet" :src="category.images.mobile" :alt="category.label">
             <img class="category-img category-img-desktop" :src="category.images.mobile" :alt="category.label">
             <div class="category-label">{{ category.label }}</div>
             <div class="category-action">
                 <div>Shop</div>
-                <img src="assets/icons/icon-arrow-right.svg">
+                <img src="~/static/assets/icons/icon-arrow-right.svg">
             </div>
-        </div>
+        </NuxtLink>
     </div>
 </template>
 
@@ -39,6 +39,8 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                text-decoration: none;
+                color: black;
                 cursor: pointer;
                 .category-img {
                     width: 80px;

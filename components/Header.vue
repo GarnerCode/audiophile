@@ -7,10 +7,12 @@
                 <div class="line3"></div>
             </div>
             <div class="header-logo">
-                <img src="assets/images/audiophile-logo.svg" alt="Audiophile Logo">
+                <NuxtLink to="/">
+                    <img src="~/static/assets/images/audiophile-logo.svg" alt="Audiophile Logo">
+                </NuxtLink>
             </div>
             <div class="cart-icon-container">
-                <img src="assets/icons/icon-cart.svg" alt="Cart Icon">
+                <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
             </div>
         </div>
         <div class="header-tablet">
@@ -21,16 +23,16 @@
                     <div class="line3"></div>
                 </div>
                 <div class="header-logo">
-                    <img src="assets/images/audiophile-logo.svg" alt="Audiophile Logo">
+                    <img src="~/static/assets/images/audiophile-logo.svg" alt="Audiophile Logo">
                 </div>
             </div>
             <div class="header-right">
-                <img src="assets/icons/icon-cart.svg" alt="Cart Icon">
+                <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
             </div>
         </div>
         <div class="header-desktop">
             <div class="header-logo">
-                <img src="assets/images/audiophile-logo.svg" alt="Audiophile Logo">
+                <img src="~/static/assets/images/audiophile-logo.svg" alt="Audiophile Logo">
             </div>
             <nav>
                 <ul>
@@ -40,7 +42,7 @@
                 </ul>
             </nav>
             <div class="cart-icon-container">
-                <img src="assets/icons/icon-cart.svg" alt="Cart Icon">
+                <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
             </div>
         </div>
     </header>
@@ -65,13 +67,16 @@
     @media screen and (min-width: 0px) {
         header {
             background-color: var(--color-black);
-            padding: 4rem var(--mobile-x-padding);
+            padding: 0 var(--mobile-x-padding);
             border-bottom: 1px solid rgba(151, 151, 151, 0.1);
-            height: 3.5rem;
+            height: 11rem;
             width: calc(100vw - 8rem);
             position: fixed;
             top: 0;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             .header-mobile {
                 display: flex;
                 flex-direction: row;
@@ -83,6 +88,9 @@
             }
             .header-desktop {
                 display: none;
+            }
+            .header-logo {
+                cursor: pointer;
             }
             .nav-toggle {
                 cursor: pointer;
@@ -112,7 +120,7 @@
     }
     @media screen and (min-width: 768px) {
         header {
-            padding: 2rem var(--mobile-x-padding);
+            height: 11rem;
             .header-mobile {
                 display: none;
             }
@@ -132,6 +140,9 @@
     }
     @media screen and (min-width: 1440px) {
         header {
+            padding: 0 var(--desktop-x-padding);
+            width: calc(100vw - 30rem);
+            height: 8rem;
             .header-tablet {
                 display: none;
             }

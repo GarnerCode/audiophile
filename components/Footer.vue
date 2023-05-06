@@ -3,7 +3,7 @@
         <div class="footer-color-bar"></div>
         <div class="footer-content">
             <div class="nav-row">
-                <img src="assets/images/audiophile-logo.svg" alt="Audiophile Logo">
+                <img src="~/static/assets/images/audiophile-logo.svg" alt="Audiophile Logo">
                 <nav>
                     <ul>
                         <li v-for="(nav, index) of navData" :key="index">
@@ -17,13 +17,13 @@
                 <p>Copyright {{ year }}. All Rights Reserved</p>
                 <div class="links-row">
                     <a href="#">
-                        <img src="assets/icons/icon-facebook.svg" alt="Facebook icon">
+                        <img src="~/static/assets/icons/icon-facebook.svg" alt="Facebook icon">
                     </a>
                     <a href="#">
-                        <img src="assets/icons/icon-twitter.svg" alt="Twitter icon">
+                        <img src="~/static/assets/icons/icon-twitter.svg" alt="Twitter icon">
                     </a>
                     <a href="#">
-                        <img src="assets/icons/icon-instagram.svg" alt="Instagram icon">
+                        <img src="~/static/assets/icons/icon-instagram.svg" alt="Instagram icon">
                     </a>
                 </div>
             </div>

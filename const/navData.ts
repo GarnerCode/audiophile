@@ -5,14 +5,14 @@ export const navData = [
     },
     {
         label: 'Headphones',
-        route: '/',
+        route: '/products/headphones',
     },
     {
         label: 'Speakers',
-        route: '/',
+        route: '/products/speakers',
     },
     {
         label: 'Earphones',
-        route: '/',
+        route: '/products/earphones',
     },
 ]
