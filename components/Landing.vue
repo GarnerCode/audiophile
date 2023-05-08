@@ -3,11 +3,11 @@
         <img class="mobile-hero hero-image" src="assets/images/mobile/image-header.jpg" alt="Hero image">
         <img class="tablet-hero hero-image" src="assets/images/tablet/image-header.jpg" alt="Hero image">
         <img class="desktop-hero hero-image" src="assets/images/desktop/image-hero.jpg" alt="Hero image">
-        <div class="section-content" v-if="featuredProduct.id">
+        <div class="section-content" v-if="landingFeaturedProduct.id">
             <div class="section-text">
                 <div class="overline">New Product</div>
-                <h1>{{ featuredProduct.name }}</h1>
-                <p>{{ featuredProduct.description }}</p>
+                <h1>{{ landingFeaturedProduct.name }}</h1>
+                <p>{{ landingFeaturedProduct.description }}</p>
                 <button class="button button-primary">See Product</button>
             </div>
         </div>
@@ -16,14 +16,14 @@
 
 <script lang="ts">
     import { defineComponent } from 'vue';
-    import { productData, featuredProduct } from '@/const/productData';
+    import { productData, landingFeaturedProduct } from '@/const/productData';
 
     export default defineComponent({
         name: 'Landing',
         data() {
             return {
                 productData,
-                featuredProduct,
+                landingFeaturedProduct,
             }
         },
     })

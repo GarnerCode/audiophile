@@ -85,7 +85,7 @@
                 color: rgba(0,0,0,0.25);
                 transition: var(--transition);
                 &:hover {
-                    color: black;
+                    color: var(--color-primary);
                 }
             }
             input {

@@ -1,17 +1,31 @@
 <template>
     <div class="product-feature-primary">
         <div class="feature-content">
-            <img class="feature-img img-mobile" src="assets/images/mobile/primary-feature-mobile.png" alt="ZX9 Speaker">
-            <img class="feature-img img-tablet" src="assets/images/tablet/primary-feature-tablet.png" alt="ZX9 Speaker">
-            <img class="feature-img img-desktop" src="assets/images/desktop/primary-feature-desktop.png" alt="ZX9 Speaker">
+            <img class="feature-img img-mobile" :src="product.image.mobile" :alt="product.name">
+            <img class="feature-img img-tablet" :src="product.image.tablet" :alt="product.name">
+            <img class="feature-img img-desktop" :src="product.image.desktop" :alt="product.name">
             <div class="feature-text">
-                <h1>ZX9<br/> Speaker</h1>
-                <p>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
-                <button class="button button-secondary">See Product</button>
+                <h1>{{ product.name }}</h1>
+                <p>{{ product.description }}</p>
+                <NuxtLink :to="`product-details/${product.id}`" class="button button-secondary">See Product</NuxtLink>
             </div>
         </div>
     </div>
 </template>
+
+<script lang="ts">
+    import { defineComponent } from 'vue';
+    import { primaryFeaturedProduct } from '~/const/productData';
+
+    export default defineComponent({
+        name: 'ProductFeaturePrimary',
+        data() {
+            return {
+                product: primaryFeaturedProduct,
+            }
+        }
+    })
+</script>
 
 <style lang="scss">
     @media screen and (min-width: 0px) {

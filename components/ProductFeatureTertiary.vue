@@ -1,16 +1,30 @@
 <template>
     <div class="product-feature-tertiary">
         <div class="feature-content">
-            <img class="feature-img img-mobile" src="assets/images/mobile/tertiary-feature-mobile.jpg" alt="YX1 Earphones">
-            <img class="feature-img img-tablet" src="assets/images/tablet/tertiary-feature-tablet.jpg" alt="YX1 Earphones">
-            <img class="feature-img img-desktop" src="assets/images/desktop/tertiary-feature-desktop.jpg" alt="YX1 Earphones">
+            <img class="feature-img img-mobile" :src="product.image.mobile" :alt="product.name">
+            <img class="feature-img img-tablet" :src="product.image.tablet" :alt="product.name">
+            <img class="feature-img img-desktop" :src="product.image.desktop" :alt="product.name">
             <div class="feature-text">
-                <h4>YX1 Earphones</h4>
-                <button class="button button-tertiary">See Product</button>
+                <h4>{{ product.name }}</h4>
+                <NuxtLink :to="`product-details/${product.id}`" class="button button-tertiary">See Product</NuxtLink>
             </div>
         </div>
     </div>
 </template>
+
+<script lang="ts">
+    import { defineComponent } from 'vue';
+    import { tertiaryFeaturedProduct } from '~/const/productData';
+
+    export default defineComponent({
+        name: 'ProductFeatureTertiary',
+        data() {
+            return {
+                product: tertiaryFeaturedProduct,
+            }
+        }
+    })
+</script>
 
 <style lang="scss">
     @media screen and (min-width: 0px) {

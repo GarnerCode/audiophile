@@ -128,6 +128,9 @@
         h1 {
             font-size: 36px;
         }
+        h3 {
+            font-size: 24px;
+        }
         .hidden-mobile {
             display: block;
         }
