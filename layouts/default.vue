@@ -2,6 +2,7 @@
     <div>
         <Header></Header>
         <main>
+            <Cart></Cart>
             <Nuxt />
         </main>
         <Footer></Footer>

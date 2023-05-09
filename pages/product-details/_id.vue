@@ -15,7 +15,7 @@
                         <div class="product-quantity">
                             <FieldQuantity :quantity="quantity" @valueEmit="(e) => handleQuantityEvent(e)"></FieldQuantity>
                         </div>
-                        <button class="button button-primary">Add to Cart</button>
+                        <button @click="addToCart()" class="button button-primary">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
 
     export default defineComponent({
         name: 'ProductDetails',
-        data() {
+        data: () => {
             return {
                 productData,
                 activeProduct: null as Product | null,
@@ -105,6 +105,39 @@
             },
             handleQuantityEvent(e: number): void {
                 this.quantity = e;
+            },
+            addToCart(): void {
+                if (this.activeProduct) {
+                    let currentCart = [] as Array<any>;
+
+                    if (localStorage.getItem('cart')) {
+                        let cart = localStorage.getItem('cart');
+                        JSON.parse(cart).forEach((item: any) => {
+                            currentCart.push(item);
+                        });
+                    }
+
+                    const existingProduct = currentCart.find((item: any) => {
+                        return item.product.id === this.activeProduct?.id;
+                    });
+
+                    if (existingProduct) {
+                        const updatedCart = [];
+                        currentCart.forEach((item: any) => {
+                            if (item.product.id === this.activeProduct.id) {
+                                item.count += this.quantity;
+                            }
+                            updatedCart.push(item)
+                        });
+                        localStorage.setItem('cart', JSON.stringify(updatedCart));
+                    } else {
+                        currentCart.push({
+                            product: this.activeProduct,
+                            count: this.quantity,
+                        });
+                        localStorage.setItem('cart', JSON.stringify(currentCart));
+                    }
+                }
             },
             getIdBySlug(slug: string): number {
                 const item = this.productData.find((product: Product) => {

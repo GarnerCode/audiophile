@@ -11,8 +11,11 @@
                     <img src="~/static/assets/images/audiophile-logo.svg" alt="Audiophile Logo">
                 </NuxtLink>
             </div>
-            <div class="cart-icon-container">
+            <div @click="toggleCart()" class="cart-icon-container">
                 <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
+                <div class="cart-count">
+                    3
+                </div>
             </div>
         </div>
         <div class="header-tablet">
@@ -28,8 +31,11 @@
                     </NuxtLink>
                 </div>
             </div>
-            <div class="header-right">
+            <div @click="toggleCart()" class="header-right">
                 <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
+                <div class="cart-count">
+                    3
+                </div>
             </div>
         </div>
         <div class="header-desktop">
@@ -45,8 +51,11 @@
                     </li>
                 </ul>
             </nav>
-            <div class="cart-icon-container">
+            <div @click="toggleCart()" class="cart-icon-container">
                 <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
+                <div class="cart-count">
+                    3
+                </div>
             </div>
         </div>
     </header>
@@ -58,11 +67,26 @@
 
     export default defineComponent({
         name: 'Header',
-        data() {
+        data: () => {
             return {
+                cartToggled: false,
                 navToggled: false,
                 navData,
+                cartCount: 0,
             }
+        },
+        mounted() {
+            if (localStorage.getItem('cart')) {
+                const cart = JSON.parse(localStorage.getItem('cart'));
+                this.cartCount = cart.length;
+            }
+        },
+        methods: {
+            toggleCart(): void {
+                this.cartToggled = !this.cartToggled;
+                const event = new Event('toggleCart');
+                document.dispatchEvent(event);
+            },
         }
     })
 </script>
@@ -77,7 +101,7 @@
             width: calc(100vw - 8rem);
             position: fixed;
             top: 0;
-            z-index: 10;
+            z-index: 12;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -118,6 +142,17 @@
                     .line3 {
                         transform: rotate(45deg) translate(-5px, -6px);
                     }
+                }
+            }
+            .cart-icon-container {
+                display: flex;
+                flex-direction: row;
+                color: white;
+                align-items: center;
+                gap: 0.5rem;
+                cursor: pointer;
+                div {
+                    font-size: 16px;
                 }
             }
         }

@@ -7,7 +7,7 @@
             <div class="overline text-highlight" v-if="product.new">New Product</div>
             <h2>{{ product.name }}</h2>
             <p>{{ product.description }}</p>
-            <NuxtLink :to="`product-details/${product.id}`" class="button button-primary">
+            <NuxtLink :to="`../product-details/${product.id}`" class="button button-primary">
                 See Product
             </NuxtLink>
         </div>

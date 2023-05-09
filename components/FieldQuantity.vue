@@ -69,8 +69,8 @@
         flex-direction: row;
         align-items: center;
             button, input {
-                width: 40px;
-                height: 48px;
+                width: 32px;
+                height: 32px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
