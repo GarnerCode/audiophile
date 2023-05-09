@@ -54,7 +54,6 @@
         .section-about {
             flex-direction: row-reverse;
             gap: 15rem;
-            margin: 0 var(--desktop-x-padding);
             .about-img-tablet {
                 display: none;
             }

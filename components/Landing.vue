@@ -8,7 +8,7 @@
                 <div class="overline">New Product</div>
                 <h1>{{ landingFeaturedProduct.name }}</h1>
                 <p>{{ landingFeaturedProduct.description }}</p>
-                <button class="button button-primary">See Product</button>
+                <NuxtLink class="button button-primary" :to="`/product-details/${landingFeaturedProduct.id}`">See Product</NuxtLink>
             </div>
         </div>
     </section>
@@ -61,7 +61,7 @@
                 .overline {
                     color: white;
                 }
-                button {
+                a {
                     margin: 0 auto;
                 }
             }
@@ -114,7 +114,7 @@
                 text-align: left;
                 align-items: flex-start;
                 padding: 0 var(--desktop-x-padding);
-                button {
+                a {
                     margin: 0;
                 }
             }

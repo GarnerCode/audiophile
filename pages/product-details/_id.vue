@@ -19,21 +19,23 @@
                     </div>
                 </div>
             </div>
-            <div class="product-features-container">
-                <h3>Features</h3>
-                <p>{{ activeProduct.features }}</p>
-            </div>
-            <div class="inclusions-container">
-                <h3>In the Box</h3>
-                <ul>
-                    <li v-for="(item, index) of activeProduct.includes" :key="index">
-                        <div class="list-label text-highlight">{{ item.quantity }}x</div>
-                        <div class="list-item">{{ item.item }}</div>
-                    </li>
-                </ul>
+            <div class="product-details-container">
+                <div class="product-features-container">
+                    <h3>Features</h3>
+                    <p>{{ activeProduct.features }}</p>
+                </div>
+                <div class="inclusions-container">
+                    <h3>In the Box</h3>
+                    <ul>
+                        <li v-for="(item, index) of activeProduct.includes" :key="index">
+                            <div class="list-label text-highlight">{{ item.quantity }}x</div>
+                            <div class="list-item">{{ item.item }}</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="gallery-container">
-                <div class="column">
+                <div class="column column-left">
                     <img class="gallery-img gallery-img-mobile" :src="activeProduct.gallery.first.mobile">
                     <img class="gallery-img gallery-img-tablet" :src="activeProduct.gallery.first.tablet">
                     <img class="gallery-img gallery-img-desktop" :src="activeProduct.gallery.first.desktop">
@@ -42,7 +44,7 @@
                     <img class="gallery-img gallery-img-tablet" :src="activeProduct.gallery.second.tablet">
                     <img class="gallery-img gallery-img-desktop" :src="activeProduct.gallery.second.desktop">
                 </div>
-                <div class="column">
+                <div class="column column-right">
                     <img class="gallery-img gallery-img-mobile" :src="activeProduct.gallery.third.mobile">
                     <img class="gallery-img gallery-img-tablet" :src="activeProduct.gallery.third.tablet">
                     <img class="gallery-img gallery-img-desktop" :src="activeProduct.gallery.third.desktop">
@@ -50,17 +52,19 @@
             </div>
             <div class="similar-items-container">
                 <h3>You may also like</h3>
-                <div class="similar-item" v-for="(item, index) of activeProduct.others" :key="index">
-                    <img class="similar-img similar-img-mobile" :src="item.image.mobile" :alt="item.name">
-                    <img class="similar-img similar-img-tablet" :src="item.image.tablet" :alt="item.name">
-                    <img class="similar-img similar-img-desktop" :src="item.image.desktop" :alt="item.name">
-                    <h3>{{ item.name }}</h3>
-                    <NuxtLink class="button button-primary" :to="`./${getIdBySlug(item.slug)}`">See Product</NuxtLink>
+                <div class="items-container">
+                    <div class="similar-item" v-for="(item, index) of activeProduct.others" :key="index">
+                        <img class="similar-img similar-img-mobile" :src="item.image.mobile" :alt="item.name">
+                        <img class="similar-img similar-img-tablet" :src="item.image.tablet" :alt="item.name">
+                        <img class="similar-img similar-img-desktop" :src="item.image.desktop" :alt="item.name">
+                        <h3>{{ item.name }}</h3>
+                        <NuxtLink class="button button-primary" :to="`./${getIdBySlug(item.slug)}`">See Product</NuxtLink>
+                    </div>
                 </div>
             </div>
-            <Categories></Categories>
-            <About></About>
         </div>
+        <Categories></Categories>
+        <About></About>
     </div>
 </template>
 
@@ -80,7 +84,6 @@
         },
         mounted() {
             this.getActiveProduct();
-            console.log('activeProduct: ', this.activeProduct);
         },
         watch: {
             'quantity': {
@@ -107,7 +110,6 @@
                 const item = this.productData.find((product: Product) => {
                     return product.slug === slug;
                 });
-                console.log('item: ', item);
                 if (item) {
                     return item.id;
                 }
@@ -164,6 +166,11 @@
                 display: flex;
                 flex-direction: row;
                 gap: 2rem;
+            }
+            .product-details-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10rem;
             }
             .product-features-container {
                 display: flex;
@@ -227,6 +234,11 @@
                 h3 {
                     text-align: center;
                 }
+                .items-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5rem;
+                }
                 .similar-item {
                     display: flex;
                     flex-direction: column;
@@ -241,6 +253,117 @@
                 }
                 .similar-img {
                     width: 100%;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 768px) {
+        .product-details-container {
+            .product-summary {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 8rem;
+            }
+            .summary-img-mobile {
+                display: none;
+            }
+            .summary-img-tablet {
+                display: block;
+            }
+            .summary-img {
+                width: 40rem;
+            }
+            .inclusions-container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20rem;
+            }
+            .gallery-container {
+                display: flex;
+                flex-direction: row;
+                .column-left {
+                    width: 40%;
+                }
+                .column-right {
+                    width: 60%;
+                }
+            }
+            .gallery-img-mobile {
+                display: none;
+            }
+            .gallery-img-tablet {
+                display: block;
+            }
+            .gallery-img {
+                width: 100%;
+                height: 100%;
+            }
+            .similar-items-container {
+                .items-container {
+                    flex-direction: row;
+                    gap: 0rem;
+                }
+                .similar-img-mobile {
+                    display: none;
+                }
+                .similar-img-tablet {
+                    display: block;
+                }
+            }
+
+        }
+    }
+    @media screen and (min-width: 1440px) {
+        .product-details-container {
+            padding: 0 var(--desktop-x-padding);
+            .product-summary {
+                gap: 5rem;
+                p {
+                    max-width: 60rem;
+                }
+            }
+            .summary-img-tablet {
+                display: none;
+            }
+            .summary-img-desktop {
+                display: block;
+            }
+            .summary-img {
+                width: 60rem;
+            }
+            .product-details-container {
+                flex-direction: row;
+                gap: 15rem;
+            }
+            .product-features-container {
+                width: 100%;
+            }
+            .inclusions-container {
+                flex-direction: column;
+                gap: 5rem;
+                width: 50rem;
+            }
+            .gallery-container {
+                gap: 3rem;
+                .column-left {
+                    gap: 3rem
+                }
+            }
+            .gallery-img-tablet {
+                display: none;
+            }
+            .gallery-img-desktop {
+                display: block;
+            }
+            .similar-items-container {
+                .similar-img-tablet {
+                    display: none;
+                }
+                .similar-img-desktop {
+                    display: block;
                 }
             }
         }

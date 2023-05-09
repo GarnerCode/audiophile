@@ -34,7 +34,7 @@
             flex-direction: column;
             align-items: center;
             gap: 3rem;
-            margin: 7rem 0;
+            margin: 10rem 0;
             .category {
                 display: flex;
                 flex-direction: column;
@@ -43,7 +43,7 @@
                 color: black;
                 cursor: pointer;
                 .category-img {
-                    width: 80px;
+                    width: 120px;
                 }
                 &:hover {
                     .category-action {
@@ -88,7 +88,12 @@
         .categories-container {
             flex-direction: row;
             justify-content: center;
-            gap: 15rem;
+            gap: 5rem;
+            .category {
+                .category-img {
+                    width: 100%;
+                }
+            }
             .category-img-mobile {
                 display: none;
             }
@@ -107,8 +112,11 @@
             }
             .category {
                 .category-img {
-                    width: 122px;
+                    width: 50%;
                 }
+            }
+            .category-label {
+                font-size: 18px;
             }
         }
     }
