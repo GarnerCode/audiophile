@@ -3,18 +3,26 @@
         <div class="cart-container">
             <div class="cart-header">
                 <h6>Cart ({{ cartCount }})</h6>
-                <button>Remove All</button>
+                <button @click="clearCart()" v-if="cartItems.length">Remove All</button>
             </div>
-            <ul class="cart-items-list">
+            <ul class="cart-items-list" v-if="cartItems.length">
                 <li class="cart-item" v-for="(item, index) of cartItems" :key="index">
                     <img class="item-img" :src="item.product.image.mobile" :alt="item.product.name">
                     <div class="item-details">
                         <div class="item-name">{{ item.product.name }}</div>
                         <div class="item-price">${{ item.product.price.toLocaleString() }}</div>
                     </div>
-                    <FieldQuantity :quantity="item.count" @valueEmit="(e) => handleQuantityEvent(e)"></FieldQuantity>
+                    <FieldQuantity :quantity="item.count" @valueEmit="(e) => handleQuantityEvent(e, item.product.id)"></FieldQuantity>
                 </li>
             </ul>
+            <h6 class="cart-empty" v-if="!cartItems.length">
+                Cart is Empty
+            </h6>
+            <div class="total-row">
+                <div class="total-label">Total</div>
+                <div class="total-price">${{ calculateTotalPrice() }}</div>
+            </div>
+            <NuxtLink v-if="cartItems.length" class="button button-primary" to="/">Checkout</NuxtLink>
         </div>
     </div>
 </template>
@@ -43,8 +51,23 @@
             }
         },
         methods: {
-            handleQuantityEvent(e: any): void {
-                console.log('event: ', e);
+            handleQuantityEvent(e: any, itemId: number): void {
+                let targetIndex = this.cartItems.findIndex((item: any) => {
+                    return item.product.id === itemId;
+                });
+                this.cartItems[targetIndex].count = e;
+                localStorage.setItem('cart', JSON.stringify(this.cartItems));
+            },
+            calculateTotalPrice(): string {
+                let total = 0;
+                this.cartItems.forEach((item: any) => {
+                    total += (item.product.price * item.count);
+                });
+                return total.toLocaleString();
+            },
+            clearCart(): void {
+                localStorage.clear();
+                this.cartItems = [];
             }
         }
     })
@@ -69,7 +92,8 @@
                 color: black;
                 padding: 3rem;
                 border-radius: var(--border-radius);
-                width: calc(100vw - 15rem)
+                z-index: 5;
+                width: calc(327px - 3rem);
             }
             .cart-header {
                 display: flex;
@@ -98,6 +122,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                gap: 1.5rem;
                 .item-img {
                     width: 64px;
                 }
@@ -115,6 +140,29 @@
                     font-weight: bold;
                     opacity: 0.5;
                 }
+            }
+            .cart-empty {
+                margin-top: 3rem;
+            }
+            .total-row {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin: 3rem 0;
+                .total-label {
+                    text-transform: uppercase;
+                    color: rgba(0,0,0,0.5);
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+                .total-price {
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+            }
+            a {
+                width: 100%;
             }
         }
     }

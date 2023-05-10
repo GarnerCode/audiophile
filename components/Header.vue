@@ -13,8 +13,8 @@
             </div>
             <div @click="toggleCart()" class="cart-icon-container">
                 <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
-                <div class="cart-count">
-                    3
+                <div v-if="cartCount" class="cart-count">
+                    {{ cartCount }}
                 </div>
             </div>
         </div>
@@ -33,8 +33,8 @@
             </div>
             <div @click="toggleCart()" class="header-right">
                 <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
-                <div class="cart-count">
-                    3
+                <div v-if="cartCount" class="cart-count">
+                    {{ cartCount }}
                 </div>
             </div>
         </div>
@@ -53,8 +53,8 @@
             </nav>
             <div @click="toggleCart()" class="cart-icon-container">
                 <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
-                <div class="cart-count">
-                    3
+                <div v-if="cartCount" class="cart-count">
+                    {{ cartCount }}
                 </div>
             </div>
         </div>
@@ -80,6 +80,9 @@
                 const cart = JSON.parse(localStorage.getItem('cart'));
                 this.cartCount = cart.length;
             }
+            document.addEventListener('itemAdded', (e) => {
+                console.log('itemAddedEvent: ', e);
+            });
         },
         methods: {
             toggleCart(): void {

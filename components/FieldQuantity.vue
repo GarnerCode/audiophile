@@ -11,7 +11,7 @@
 
     export default defineComponent({
         name: 'FieldQuantity',
-        data() {
+        data: () => {
             return {
                 emittedValue: 1 as number,
             }
@@ -28,13 +28,17 @@
                 }
             }
         },
+        mounted() {
+            this.emittedValue = this.quantity;
+        },
         methods: {
             verifyProp(value: number): void {
                 if (this.quantity) {
+                    console.log('quantity passed: ', this.quantity);
+                    this.emittedValue = this.quantity;
                     if (typeof(this.quantity) === 'string') {
                         this.emittedValue = parseInt(this.quantity);
                     }
-                    this.emittedValue = this.quantity;
                     if (this.quantity >= 1 && value !== -1) {
                         this.emittedValue = this.quantity + value;
                     } else if (this.quantity > 1) {
