@@ -137,6 +137,8 @@
                         });
                         localStorage.setItem('cart', JSON.stringify(currentCart));
                     }
+                    const event = new Event('localStorageUpdated');
+                    document.dispatchEvent(event);
                 }
             },
             getIdBySlug(slug: string): number {

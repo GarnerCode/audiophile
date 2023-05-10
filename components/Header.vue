@@ -80,8 +80,9 @@
                 const cart = JSON.parse(localStorage.getItem('cart'));
                 this.cartCount = cart.length;
             }
-            document.addEventListener('itemAdded', (e) => {
-                console.log('itemAddedEvent: ', e);
+            document.addEventListener('localStorageUpdated', (e) => {
+                this.cartCount = JSON.parse(localStorage.getItem('cart'))?.length;
+                console.log('cart updated, length is now: ', this.cartCount);
             });
         },
         methods: {
@@ -147,7 +148,7 @@
                     }
                 }
             }
-            .cart-icon-container {
+            .cart-icon-container, .header-right {
                 display: flex;
                 flex-direction: row;
                 color: white;
