@@ -1,30 +1,34 @@
 <template>
-    <div v-if="cartToggled">
-        <div @click="cartToggled = false" class="cart-backdrop"></div>
-        <div class="cart-container">
-            <div class="cart-header">
-                <h6>Cart ({{ cartCount }})</h6>
-                <button @click="clearCart()" v-if="cartItems?.length">Remove All</button>
+    <div>
+        <Transition name="fade" mode="out-in">
+            <div v-if="cartToggled" @click="cartToggled = false" class="cart-backdrop"></div>
+        </Transition>
+        <Transition name="slide" mode="out-in">
+            <div v-if="cartToggled" class="cart-container">
+                <div class="cart-header">
+                    <h6>Cart ({{ cartCount }})</h6>
+                    <button @click="clearCart()" v-if="cartItems?.length">Remove All</button>
+                </div>
+                <ul class="cart-items-list" v-if="cartItems?.length">
+                    <li class="cart-item" v-for="(item, index) of cartItems" :key="index">
+                        <img class="item-img" :src="item.product.image.mobile" :alt="item.product.name">
+                        <div class="item-details">
+                            <div class="item-name">{{ item.product.name }}</div>
+                            <div class="item-price">${{ item.product.price.toLocaleString() }}</div>
+                        </div>
+                        <FieldQuantity :quantity="item.count" @valueEmit="(e) => handleQuantityEvent(e, item.product.id)"></FieldQuantity>
+                    </li>
+                </ul>
+                <h6 class="cart-empty" v-if="!cartItems?.length">
+                    Cart is Empty
+                </h6>
+                <div class="total-row">
+                    <div class="total-label">Total</div>
+                    <div class="total-price">${{ calculateTotalPrice() }}</div>
+                </div>
+                <button @click="checkout()" v-if="cartItems?.length" class="button button-primary checkout">Checkout</button>
             </div>
-            <ul class="cart-items-list" v-if="cartItems?.length">
-                <li class="cart-item" v-for="(item, index) of cartItems" :key="index">
-                    <img class="item-img" :src="item.product.image.mobile" :alt="item.product.name">
-                    <div class="item-details">
-                        <div class="item-name">{{ item.product.name }}</div>
-                        <div class="item-price">${{ item.product.price.toLocaleString() }}</div>
-                    </div>
-                    <FieldQuantity :quantity="item.count" @valueEmit="(e) => handleQuantityEvent(e, item.product.id)"></FieldQuantity>
-                </li>
-            </ul>
-            <h6 class="cart-empty" v-if="!cartItems?.length">
-                Cart is Empty
-            </h6>
-            <div class="total-row">
-                <div class="total-label">Total</div>
-                <div class="total-price">${{ calculateTotalPrice() }}</div>
-            </div>
-            <button @click="checkout()" v-if="cartItems?.length" class="button button-primary checkout">Checkout</button>
-        </div>
+        </Transition>
     </div>
 </template>
 
@@ -48,8 +52,10 @@
                 const storage = JSON.parse(localStorage.getItem('cart'));
                 if (storage) {
                     this.cartItems = storage;
+                    this.cartCount = storage.length;
                 } else {
                     this.cartItems = [];
+                    this.cartCount = 0;
                 }
             })
             if (localStorage.getItem('cart')) {

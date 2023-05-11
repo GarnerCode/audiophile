@@ -45,6 +45,9 @@
     @media screen and (min-width: 0px) {
         .products-container {
             margin-top: 11rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10rem;
             .category-title-container {
                 background-color: black;
                 padding: 5rem 0;

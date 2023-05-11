@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-container">
     <Landing></Landing>
     <Categories></Categories>
     <section class="section-product-features">
@@ -21,6 +21,11 @@ export default Vue.extend({
 
 <style lang="scss">
   @media screen and (min-width: 0px) {
+    .home-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10rem;
+    }
     .section-product-features {
       display: flex;
       flex-direction: column;

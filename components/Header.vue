@@ -13,7 +13,7 @@
             </div>
             <div @click="toggleCart()" class="cart-icon-container">
                 <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
-                <div v-if="cartCount" class="cart-count">
+                <div class="cart-count" :class="{'hidden': !cartCount}">
                     {{ cartCount }}
                 </div>
             </div>
@@ -33,7 +33,7 @@
             </div>
             <div @click="toggleCart()" class="header-right">
                 <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
-                <div v-if="cartCount" class="cart-count">
+                <div class="cart-count" :class="{'hidden': !cartCount}">
                     {{ cartCount }}
                 </div>
             </div>
@@ -53,11 +53,19 @@
             </nav>
             <div @click="toggleCart()" class="cart-icon-container">
                 <img src="~/static/assets/icons/icon-cart.svg" alt="Cart Icon">
-                <div v-if="cartCount" class="cart-count">
+                <div class="cart-count" :class="{'hidden': !cartCount}">
                     {{ cartCount }}
                 </div>
             </div>
         </div>
+        <Transition name="fade" mode="out-in">
+            <div v-if="navToggled" class="mobile-nav-backdrop"></div>
+        </Transition>
+        <Transition name="slide" mode="out-in">
+            <div v-if="navToggled" class="mobile-nav-container">
+                <Categories></Categories>
+            </div>
+        </Transition>
     </header>
 </template>
 
@@ -82,6 +90,9 @@
             }
             document.addEventListener('localStorageUpdated', (e) => {
                 this.cartCount = JSON.parse(localStorage.getItem('cart'))?.length;
+            });
+            document.addEventListener('closeMobileNav', (e) => {
+                this.navToggled = false;
             });
         },
         methods: {
@@ -154,9 +165,32 @@
                 align-items: center;
                 gap: 0.5rem;
                 cursor: pointer;
-                div {
+                .cart-count {
                     font-size: 16px;
+                    width: 2rem;
+                    &.hidden {
+                        opacity: 0;
+                    }
                 }
+            }
+            .mobile-nav-backdrop {
+                background-color: rgba(0,0,0,0.5);
+                position: fixed;
+                top: 11rem;
+                left: 0;
+                width: 100vw;
+                height: calc(100vh - 11rem);
+
+            }
+            .mobile-nav-container {
+                position: fixed;
+                top: 11rem;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-gray);
+                padding: 3rem 0;
+                border-bottom-left-radius: var(--border-radius);
+                border-bottom-right-radius: var(--border-radius);
             }
         }
     }

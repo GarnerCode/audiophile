@@ -136,6 +136,19 @@
             color: black;
         }
     }
+    .slide-enter, .slide-leave-to {
+        opacity: 0;
+        transform: translateY(-2rem);
+    }
+    .slide-enter-active, .slide-leave-active {
+        transition: all 0.3s ease;
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: all 0.3s ease;
+    }
     @media screen and (min-width: 0px) {
         h1 {
             font-size: 36px;

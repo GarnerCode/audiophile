@@ -63,7 +63,9 @@
                 </div>
             </div>
         </div>
-        <Categories></Categories>
+        <div class="categories">
+            <Categories></Categories>
+        </div>
         <About></About>
     </div>
 </template>
@@ -280,6 +282,9 @@
                 .similar-img {
                     width: 100%;
                 }
+            }
+            .categories {
+                margin: 10rem 0;
             }
         }
     }

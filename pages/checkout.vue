@@ -1,5 +1,6 @@
 <template>
     <div id="checkout-page">
+        <OrderConfirm :grandTotal="grandTotal" :toggleConfirmation="toggleConfirmation"></OrderConfirm>
         <button @click="goBack()" class="go-back">Go Back</button>
         <div class="checkout-content">
             <form class="checkout-form">
@@ -186,7 +187,7 @@
                 this.totalPrice = total;
             },
             calculateVatPrice(): void {
-                this.vatPrice = this.totalPrice * 0.2;
+                this.vatPrice = Math.round(this.totalPrice * 0.2);
             },
             calculateGrandTotal(): void {
                 this.grandTotal = (this.totalPrice + this.shippingPrice + this.vatPrice);
@@ -334,6 +335,7 @@
                     width: auto;
                     accent-color: var(--color-primary);
                     margin: 0;
+                    cursor: pointer;
                 }
                 &.field-active {
                     border-color: var(--color-primary);

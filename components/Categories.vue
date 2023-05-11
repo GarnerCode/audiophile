@@ -1,6 +1,6 @@
 <template>
     <div class="categories-container">
-        <NuxtLink :to="`/products/${category.label}`" v-for="(category, index) of categoriesData" :key="index" class="category">
+        <div @click="handleClick(category.label)" :to="`/products/${category.label}`" v-for="(category, index) of categoriesData" :key="index" class="category">
             <img class="category-img category-img-mobile" :src="category.images.mobile" :alt="category.label">
             <img class="category-img category-img-tablet" :src="category.images.mobile" :alt="category.label">
             <img class="category-img category-img-desktop" :src="category.images.mobile" :alt="category.label">
@@ -9,7 +9,7 @@
                 <div>Shop</div>
                 <img src="~/static/assets/icons/icon-arrow-right.svg">
             </div>
-        </NuxtLink>
+        </div>
     </div>
 </template>
 
@@ -19,10 +19,20 @@
 
     export default defineComponent({
         name: 'Categories',
-        data() {
+        data: () => {
             return {
                 categoriesData,
             }
+        },
+        methods: {
+            fireCloseNav(): void {
+                const event = new Event('closeMobileNav');
+                document.dispatchEvent(event);
+            },
+            handleClick(route: string): void {
+                this.$router.push(`/products/${route}`);
+                this.fireCloseNav();
+            },
         }
     })
 </script>
@@ -34,7 +44,7 @@
             flex-direction: column;
             align-items: center;
             gap: 3rem;
-            margin: 10rem 0;
+            margin: 0;
             .category {
                 display: flex;
                 flex-direction: column;
