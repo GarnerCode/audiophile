@@ -82,7 +82,6 @@
             }
             document.addEventListener('localStorageUpdated', (e) => {
                 this.cartCount = JSON.parse(localStorage.getItem('cart'))?.length;
-                console.log('cart updated, length is now: ', this.cartCount);
             });
         },
         methods: {

@@ -137,8 +137,10 @@
                         });
                         localStorage.setItem('cart', JSON.stringify(currentCart));
                     }
-                    const event = new Event('localStorageUpdated');
-                    document.dispatchEvent(event);
+                    const storageEvent = new Event('localStorageUpdated');
+                    document.dispatchEvent(storageEvent);
+                    const cartEvent = new Event('toggleCart');
+                    document.dispatchEvent(cartEvent);
                 }
             },
             getIdBySlug(slug: string): number {
@@ -162,17 +164,6 @@
         .product-details-container {
             margin-top: 15rem;
             padding: 0 var(--mobile-x-padding);
-            .go-back {
-                background: none;
-                border: none;
-                color: rgba(0,0,0,0.5);
-                transition: var(--transition);
-                cursor: pointer;
-                font-size: 15px;
-                &:hover {
-                    color: black;
-                }
-            }
             .product-details {
                 display: flex;
                 flex-direction: column;

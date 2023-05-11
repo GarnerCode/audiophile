@@ -125,6 +125,17 @@
             }
         }
     }
+    .go-back {
+        background: none;
+        border: none;
+        color: rgba(0,0,0,0.5);
+        transition: var(--transition);
+        cursor: pointer;
+        font-size: 15px;
+        &:hover {
+            color: black;
+        }
+    }
     @media screen and (min-width: 0px) {
         h1 {
             font-size: 36px;

@@ -34,7 +34,6 @@
         methods: {
             verifyProp(value: number): void {
                 if (this.quantity) {
-                    console.log('quantity passed: ', this.quantity);
                     this.emittedValue = this.quantity;
                     if (typeof(this.quantity) === 'string') {
                         this.emittedValue = parseInt(this.quantity);

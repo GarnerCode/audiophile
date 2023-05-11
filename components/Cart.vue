@@ -23,7 +23,7 @@
                 <div class="total-label">Total</div>
                 <div class="total-price">${{ calculateTotalPrice() }}</div>
             </div>
-            <NuxtLink v-if="cartItems?.length" class="button button-primary" to="/">Checkout</NuxtLink>
+            <button @click="checkout()" v-if="cartItems?.length" class="button button-primary checkout">Checkout</button>
         </div>
     </div>
 </template>
@@ -56,7 +56,6 @@
                 const cart = JSON.parse(localStorage.getItem('cart'));
                 this.cartCount = cart.length;
                 this.cartItems = JSON.parse(localStorage.getItem('cart'));
-                console.log('cartItems: ', this.cartItems);
             }
         },
         methods: {
@@ -79,6 +78,10 @@
                 this.cartItems = [];
                 const event = new Event('localStorageUpdated');
                 document.dispatchEvent(event);
+            },
+            checkout(): void {
+                this.cartToggled = false;
+                this.$router.push('/checkout');
             }
         }
     })
@@ -177,8 +180,8 @@
                         font-weight: bold;
                     }
                 }
-                a {
-                    width: 100%;
+                .checkout {
+                    width: 100% !important;
                 }
             }
     }
